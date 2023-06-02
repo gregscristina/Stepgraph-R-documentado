@@ -1,6 +1,18 @@
+---
+output: github_document
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
 
 stepGraph
-=========
+==========
 
 This package implements the stepwise Gaussian graphical model algorithm.
 
@@ -14,6 +26,7 @@ You can install the **development** version from [GitHub](https://github.com/Ant
 library(devtools)
 devtools::install_github("AnthonyChristidis/stepGraph")
 ```
+
 
 ### License
 

@@ -1,0 +1,20 @@
+Package: stepGraph
+Type: Package
+Title: Implementation of Stepwise Gaussian Graphical Algorithm
+Version: 1.0.0
+Date: 2019-12-30
+Author: Anthony Christidis <anthony.christidis@stat.ubc.ca>
+Maintainer: Anthony Christidis <anthony.christidis@stat.ubc.ca>
+Description: Implements the stepwise Gaussian graphical model algorithm
+  for high-dimensional data. The cross-validation functions computes
+  the optimal threshold parameters for the stepwise procedure.
+License: GPL (>= 2)
+Encoding: UTF-8
+Imports: scatterplot3d
+Depends:
+Suggests: R.rsp,
+   testthat
+Biarch: true
+RoxygenNote: 7.0.2
+VignetteBuilder: R.rsp
+LazyData: true
