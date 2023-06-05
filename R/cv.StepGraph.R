@@ -24,14 +24,14 @@ cv.stepGraph = function(x, fold, alpha_f_min, alpha_f_max, n_alpha, nei.max){
     ntest = floor(n/k) #floor()arredonda para inteiro # determinar tamanho do conjunto de teste
     ntrain = n - ntest #determina tamanho do conjunto de treinamento
     ind = sample(n) #A função sample é usada para criar um vetor aleatório ind contendo números de 1 a n.
-    trainMat = matrix(NA, nrow=ntrain, ncol=k) #As matrizes trainMat e testMat são inicializadas com valores NA, 
+    trainMat = matrix(NA, nrow=ntrain, ncol=k) #As matrizes trainMat e testMat são inicializadas com valores NA utilizando a funçao matrix(), 
     testMat = matrix(NA, nrow=ntest, ncol=k)    #com as dimensões adequadas para armazenar os conjuntos de treinamento e teste.
     nn = 1:n             #O vetor nn é criado com números de 1 a n.
     for (j in 1:k) {
-      sel = ((j-1)*ntest+1):(j*ntest)
-      testMat[,j] = ind[sel ]
-      sel2 = nn[ !(nn %in% sel) ]
-      trainMat[,j] = ind[sel2]
+      sel = ((j-1)*ntest+1):(j*ntest) # calcula os índices dos dados que serão selecionados para teste no fold atual. Ele define uma sequência de índices que corresponde aos dados do fold atual.
+      testMat[,j] = ind[sel ] #atribui os dados selecionados para teste na matriz 
+      sel2 = nn[ !(nn %in% sel) ] #calcula os índices dos dados que serão selecionados para treinamento no fold atual. Ele seleciona os índices que não estão presentes nos índices de teste.
+      trainMat[,j] = ind[sel2] #atribui os dados selecionados para treinamento na matriz
     }
     return(list(trainMat=trainMat,testMat=testMat))
   }
@@ -45,17 +45,23 @@ cv.stepGraph = function(x, fold, alpha_f_min, alpha_f_max, n_alpha, nei.max){
 
   ## The grid
 
-  alpha_seq = seq(alpha_f_min,alpha_f_max,length=n_alpha)
+  alpha_seq = seq(alpha_f_min,alpha_f_max,length=n_alpha)#É criada uma sequência de valores entre alpha_f_min e alpha_f_max com tamanho n_alpha utilizando a função seq. Essa sequência será usada como os valores de alpha_f no grid de valores.
   alpha_f = rep(alpha_seq,2)
   alpha_b = c(0.5*alpha_seq,alpha_seq)
   alpha.grid <- cbind(f=alpha_f, b=alpha_b )
   alpha.grid  <- as.data.frame(alpha.grid )
+  #A sequência alpha_seq é replicada duas vezes para formar o vetor alpha_f. 
+  #O vetor alpha_b é formado multiplicando a sequência alpha_seq por 0.5 e concatenando-a com a sequência original alpha_seq. Esses vetores alpha_f e alpha_b são combinados em uma matriz alpha.grid usando a função cbind.
 
+  #A matriz alpha.grid é convertida em um objeto do tipo data frame usando a função as.data.frame.
 
+  
 
 
   loss.re = matrix(0, nrow=nrow(alpha.grid), ncol=fold)
-
+  #Uma matriz loss.re é criada com dimensões nrow(alpha.grid) x fold, preenchida com zeros. Essa matriz será usada para armazenar os valores de perda (loss) calculados durante a validação cruzada.
+  #
+  #
   for (k in 1:fold)
   {
     x.train = x[part.list$trainMat[, k], ]
