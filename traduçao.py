@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
+#from sklearn.preprocessing import StandardScaler
 
-
+""""
 def cv_part(n, k):
     
     ntest = n // k  
@@ -29,7 +29,7 @@ def cv_stepGraph(x,fold,alpha_f_min,alpha_f_max,n_alpha,nei_max):
     loss_re = np.zeros((alpha_grid.shape[0], fold))
     for k in range(1, fold+1):
         x_train = x[part_list['trainMat'][:, k-1], :]
-        varepsilon_list = [stepGraph(x_train, alpha_grid.loc[i, 'f'], alpha_grid.loc[i, 'b'], nei_max) for i in range(alpha_grid.shape[0])]
+        varepsilon_list = [StepGraph(x_train, alpha_grid.loc[i, 'f'], alpha_grid.loc[i, 'b'], nei_max) for i in range(alpha_grid.shape[0])]
         x_test = scale(x[part_list['testMat'][:, k-1], :])
         for i in range(alpha_grid.shape[0]):
             if len(varepsilon_list[i]) == 1:
@@ -37,3 +37,4 @@ def cv_stepGraph(x,fold,alpha_f_min,alpha_f_max,n_alpha,nei_max):
             else:
                 beta = varepsilon_list[i][1]
                 loss_re[i, k-1] = np.sum(np.sum((x_test - x_test @ beta) ** 2))
+"""
