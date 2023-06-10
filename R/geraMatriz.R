@@ -10,7 +10,7 @@ if (!require(MASS)) {
 
 library(MASS) # mvrnorm
 #source(file='StepGraph.R')
-source(file='C:\\Users\\Cliente\\OneDrive\\Área de Trabalho\\estatistica\\QUARTO PERIODO\\SUPER2023- COLONA\\CODIGO R-STEP GRAPH\\Stepgraph-R-documentado')
+source(file='C:\\Users\\Cliente\\OneDrive\\Área de Trabalho\\estatistica\\QUARTO PERIODO\\SUPER2023- COLONA\\CODIGO R-STEP GRAPH\\Stepgraph-R-documentado\\R\\StepGraph.R')
 
 # Setting the parameters
 set.seed(1234567) # semente aleatória
