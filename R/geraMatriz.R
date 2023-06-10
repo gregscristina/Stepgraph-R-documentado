@@ -1,4 +1,6 @@
+
 rm(list=ls()) # Clear memory
+
 
 # Verificar se o pacote MASS está instalado
 if (!require(MASS)) {
@@ -7,8 +9,8 @@ if (!require(MASS)) {
 }
 
 library(MASS) # mvrnorm
-
-#source(file='C:\Users\Cliente\OneDrive\Área de Trabalho\estatistica\QUARTO PERIODO\SUPER2023- COLONA\CODIGO R-STEP GRAPH\Stepgraph-R-documentado\R\StepGraph.R')
+#source(file='StepGraph.R')
+source(file='C:\\Users\\Cliente\\OneDrive\\Área de Trabalho\\estatistica\\QUARTO PERIODO\\SUPER2023- COLONA\\CODIGO R-STEP GRAPH\\Stepgraph-R-documentado')
 
 # Setting the parameters
 set.seed(1234567) # semente aleatória
@@ -16,6 +18,15 @@ phi = 0.4         # parâmetro autoregressivo
 p = 20             # Dimension
 n = 100           # Sample size
 
+SigmaAR = function(p, phi){ # compute the covariance matrix
+  Sigma = diag(p)
+  for (i in 1:p) {
+    for (j in 1:p) {
+      Sigma[i,j] = phi^(abs(i-j))
+    }
+  }
+  return(Sigma)
+}
 # gera a matriz de precisão (Omega) esparsa
 Sigma = SigmaAR(p, phi)
 Omega = solve(Sigma)  
@@ -27,6 +38,7 @@ X = mvrnorm(n, mu=rep(0,p), Sigma)
 X = scale(X)
 
 print(X)
+write.csv(X, file = "matriz_X.csv", row.names = FALSE)
 # tem que salvar X em .csv
 
 
